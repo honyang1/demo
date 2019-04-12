@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+    </div>
+</body>
+<script>
+    //页面 = 数据 + 模板
+    let message = '你好呀！';
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            message
+        }
+    });
+</script>
+
+</html>
