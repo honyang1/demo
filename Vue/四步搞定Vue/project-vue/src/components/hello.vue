@@ -1,20 +1,34 @@
 <template>
-    <div>
-        hello
-        <p>{{n}}</p>
+  <div>
+    hello
+    <div v-for="item in shopList">
+      <button @click="changCont()">-</button>
+       <span>{{item.count}}</span>
+       <button @click="changCont()">+</button>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        data(){
-            return {
-                n:this.$store.state.count//n的初始值从vuex的state中拿
-            }
-        }
+export default {
+  //只能在本组件被改变
+  data() {
+      return {
+          shopList: this.$store.state.shopList
+      }
+  },
+  methods: {
+    changCont() {
+      this.$store.commit("updateCount", { add: 5 });
     }
+  },
+  computed: {
+    m() {
+      return this.$store.state.count;
+    }
+  }
+};
 </script>
 
-<style lang="scss" scoped>
-
+<style>
 </style>
