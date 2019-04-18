@@ -22,26 +22,23 @@
   </div>
 </template> 
 <style>
-::-webkit-scrollbar  
-{  
-    width: 16px;  /*滚动条宽度*/
-    height: 16px;  /*滚动条高度*/
-}  
-  
-/*定义滚动条轨道 内阴影+圆角*/  
-::-webkit-scrollbar-track  
-{  
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  
-    border-radius: 10px;  /*滚动条的背景区域的圆角*/
-    background-color: red;/*滚动条的背景颜色*/  
-}  
-  
-/*定义滑块 内阴影+圆角*/  
-::-webkit-scrollbar-thumb  
-{  
-    border-radius: 10px;  /*滚动条的圆角*/
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
-    background-color: green;  /*滚动条的背景颜色*/
+::-webkit-scrollbar {
+  width: 16px; /*滚动条宽度*/
+  height: 16px; /*滚动条高度*/
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; /*滚动条的背景区域的圆角*/
+  background-color: red; /*滚动条的背景颜色*/
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px; /*滚动条的圆角*/
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: green; /*滚动条的背景颜色*/
 }
 </style>
 
@@ -74,17 +71,19 @@ export default {
     },
     //更新table数据
     tableChang() {
-      this.$api.get(
-        this.tablep.url,
+      this.$Ajax(
         {
-          pageSize: this.pageSize,
-          current: this.currentPage
+          url: this.tablep.url,
+          params: {
+            pageSize: this.pageSize,
+            current: this.currentPage
+          },
+          loadingType: false
         },
         r => {
           //测试用例
           this.total = 41;
-          this.tableData = r;
-
+          this.tableData = r.data;
           // this.total = r.data.total;
           // this.tableData = JSON.parse(JSON.stringify(r.data.list));
         }

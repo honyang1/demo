@@ -8,7 +8,6 @@
       <br>
       <p>数据：{{_fatherData}}</p>
     </div>
-
     <button @click="Clike_href">带参数跳转1(参数为123)</button>
     <button @click="Clike_href2">带参数跳转2(参数为123)</button>
     <button @click="Click_Isnull">判断是否为空</button>

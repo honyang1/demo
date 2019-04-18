@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     m() {
-      return this.$store.state.count;
+      retu rn this.$store.state.count;
     }
   }
 };

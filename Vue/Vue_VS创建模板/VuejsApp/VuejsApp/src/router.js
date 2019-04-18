@@ -39,9 +39,6 @@ const router = new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component:About,
-      meta: {
-        requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
-      }
     },
     {
       path: '/login',
