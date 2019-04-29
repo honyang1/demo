@@ -1,6 +1,6 @@
 <template>
   <div style="overflow: hidden;position:relative">
-    <i-table :tableKey="tableKey" :tablep="tablep"></i-table>
+    <!-- <i-table :tableKey="tableKey" :tablep="tablep"></i-table> -->
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
   components: {
     iTable
   },
+  
   data() {
     return {
       tableKey: [
@@ -23,13 +24,15 @@ export default {
       ],
       tablep: {
         //数据访问接口
-        url: "/api/Interface/Leaving/GetLeaving",
+        url: "/api/Interface/Leaving/GetLeaving2",
         currentPage: 1,
         pageSize: 10
+       
       }
     };
   },
   created() {},
-  methods: {}
+  methods: {},
+  
 };
 </script>

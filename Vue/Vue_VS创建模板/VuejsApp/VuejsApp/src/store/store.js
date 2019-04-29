@@ -8,21 +8,21 @@ import App from '../utils/common'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    token: "1"
-  },
-  mutations: {
-    saveToken(state, data) {
-      state.token = data;
-      App.Session.Set("Token", data);///就是这里，保存到了 localStorage 中
-    }
-  },
-  actions: {
-    
-  },
-  modules: {
-    dialog
-  }
-})
-//获取使用方法 this.$store.state.dialog.formDatas;
-//更改使用方法 this.$store.commit('Update_State',{key:'dialog_formDatas',data:this.form} )
+        state: {
+            token: "1"
+        },
+        mutations: {
+            saveToken(state, data) {
+                state.token = data;
+                App.Session.Set("Token", data); ///就是这里，保存到了 localStorage 中
+            }
+        },
+        actions: {
+
+        },
+        modules: {
+            dialog
+        }
+    })
+    //获取使用方法 this.$store.state.dialog.formDatas;
+    //更改使用方法 this.$store.commit('Update_State',{key:'dialog_formDatas',data:this.form} )

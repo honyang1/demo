@@ -1,10 +1,10 @@
 <template>
   <div>
     hello
-    <div v-for="item in shopList">
-      <button @click="changCont()">-</button>
+    <div :key="item.id" v-for="item in shopList">
+      <button @click="reduce(item.id)">-</button>
        <span>{{item.count}}</span>
-       <button @click="changCont()">+</button>
+       <button @click="add(item.id)">+</button>
     </div>
   </div>
 </template>
@@ -18,13 +18,16 @@ export default {
       }
   },
   methods: {
-    changCont() {
-      this.$store.commit("updateCount", { add: 5 });
+    add(id) {
+      this.$store.commit("updateCountById", { id });
+    },
+    reduce(id){
+      this.$store.commit("reduceCountById", { id });
     }
   },
   computed: {
     m() {
-      retu rn this.$store.state.count;
+      return this.$store.state.count;
     }
   }
 };
