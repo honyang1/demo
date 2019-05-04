@@ -58,8 +58,12 @@ const VueTep = `<template>
 
 `;
 
-fs.mkdirSync(`${basePath}/views/${dirName}`);
-process.chdir(`${basePath}/views/demo`); // cd views
+// fs.mkdirSync(`${basePath}/views/${dirName}`);
+// process.chdir(`${basePath}/views/demo`); // cd views
+// fs.writeFileSync(`${dirName}.vue`, VueTep); // vue
+
+//fs.mkdirSync(`${basePath}/views`); //创建目录
+process.chdir(`${basePath}/views/`); // cd views
 fs.writeFileSync(`${dirName}.vue`, VueTep); // vue
 
-process.exit(0);
+process.exit(0)
