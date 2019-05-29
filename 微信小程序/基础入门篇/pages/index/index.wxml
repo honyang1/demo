@@ -1,0 +1,45 @@
+<!--index.wxml-->
+<import src="template" />
+
+<!-- <wxs module="tool">
+  function createNames(names) {
+    return names.split(',');
+  }
+  module.exports = createNames;
+</wxs> -->
+
+<wxs src="tool.wxs" module="tool"></wxs>
+<view bind:tap="onContainer" class="container">
+  <!-- <view>{{name}}</view>
+  <view>{{people.n1}}</view>
+  <view>{{people.n2}}</view>
+  <view>n1+n2: {{people.n2 + people.n1}}</view> -->
+  <!-- <navigator url='/pages/movie/movie'>去视频页面</navigator> -->
+
+  <!-- <template is="renderList" data="{{names:names}}"></template>
+  <template is="ofCondition" data="{{name,score}}"></template>
+  <include src="header.wxml" />
+  <template is="stringName" data="{{name:'Mate'}}"></template> -->
+
+  <!-- <magic-number now-in="Index" bind:getMagicNumber="onGetMagicNumber" ></magic-number>
+<view class='num' id="num" style='color:#3e99c6' data-name="num" bind:tap="onNumTap" >{{num}}</view> -->
+  <!-- <view wx:for="{{tool(names)}}">{{item}}</view> -->
+
+
+  <view>首页</view>
+
+  <navigator url='/pages/movie/movie' open-type='navigate'>movie</navigator>
+  <navigator url='/pages/about/about'>about</navigator>
+
+  <button open-type='getUserInfo' bindgetuserinfo='onGetUserInfo'>获取用户信息</button>
+  <button bind:tap="onTry">获取用户信息试试</button>
+
+  <button bind:tap="onAuthLocation">授权位置</button>
+   <button bind:tap="onGetLocation">获取位置</button>
+
+   <button bind:tap="onGetSetting">获取授权信息</button>
+
+   <button bind:tap="onGoToSetting">打开授权信息面板</button>
+
+   <button bind:tap="onReq">请求服务</button>
+</view>

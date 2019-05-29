@@ -1,0 +1,17 @@
+<!--pages/about/about.wxml-->
+<view>about</view>
+
+<navigator url='/pages/logs/logs' open-type='switchTab'>logs</navigator>
+
+<navigator open-type='navigateBack'>回退</navigator>
+
+<navigator url='/pages/movie/movie' open-type='redirect'>重定向到 movie</navigator>
+
+<navigator url='/pages/movie/movie' open-type='reLaunch'>reLanunch</navigator>
+
+<view bind:tap="onGotoMovie">使用api 跳转到movie</view>
+
+<view>{{name}}</view>
+
+<button bind:tap="onGetName">获取 name</button>
+<button bind:tap="onRemoveName">删除 name</button>

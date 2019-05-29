@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-body": "^1.7.0",
+    "koa-router": "^7.4.0",
+    "nodemon": "^1.17.5"
+  }
+}

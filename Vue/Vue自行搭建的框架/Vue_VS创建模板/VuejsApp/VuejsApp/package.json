@@ -1,0 +1,64 @@
+{
+    "name": "vuejs-app",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "tep": "node npm/component"
+    },
+    "description": "VuejsApp",
+    "author": {
+        "name": ""
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "babel-polyfill": "^6.26.0",
+        "element-ui": "^2.8.2",
+        "js-base64": "^2.5.1",
+        "jsplumb": "^2.9.0",
+        "linq": "^3.2.0",
+        "perfect-scrollbar": "^1.4.0",
+        "vue": "2.5.17",
+        "vue-router": "^3.0.5",
+        "vuex": "^3.1.0",
+        "webpack-jquery-ui": "^2.0.1"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "3.0.4",
+        "@vue/cli-plugin-eslint": "3.0.4",
+        "@vue/cli-service": "3.0.4",
+        "eslint": "5.6.0",
+        "eslint-plugin-vue": "4.7.1",
+        "jquery": "^3.4.0",
+        "vue-template-compiler": "2.5.17",
+        "webpack": "^4.30.0"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "rules": {},
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 8"
+    ],
+    "build:dev": "webpack --env=dev --progress --profile --colors",
+    "build:dist": "webpack --env=prod --progress --profile --colors"
+}

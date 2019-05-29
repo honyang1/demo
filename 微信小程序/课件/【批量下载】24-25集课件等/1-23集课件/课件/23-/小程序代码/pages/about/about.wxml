@@ -1,0 +1,32 @@
+<view>
+  About
+</view>
+
+<navigator
+  url="/pages/logs/logs"
+  open-type="switchTab"
+>Logs</navigator>
+<navigator
+  open-type="navigateBack"
+>回退</navigator>
+<navigator
+  url="/pages/movie/movie"
+  open-type="redirect"
+>重定向到 movie</navigator>
+<navigator
+  url="/pages/movie/movie"
+  open-type="reLaunch"
+>reLaunch</navigator>
+
+<view
+  bind:tap="onGotoMovie"
+> 使用 api 跳转到 movie</view>
+
+<view>{{name}}</view>
+
+<button
+  bind:tap="onGetName"
+> 获取 name</button>
+<button
+  bind:tap="onRemoveName"
+> remove name</button>

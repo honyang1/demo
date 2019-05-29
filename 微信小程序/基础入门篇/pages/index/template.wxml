@@ -1,0 +1,21 @@
+<template name="stringName">
+  <view>{{name}}</view>
+</template>
+
+<template name="renderList">
+  <block wx:for="{{names}}" wx:key="id">
+    <view>{{item.name}}</view>
+    <view>aaaaa</view>
+  </block>
+</template>
+
+<template name="ofCondition">
+  <block wx:if="{{score===80}}">
+    <view>{{name}}</view>
+    <view>{{score}}</view>
+    <view>等级A</view>
+  </block>
+  <block wx:else>
+    学生不符合要求
+  </block>
+</template>

@@ -1,0 +1,15 @@
+/**index.wxss**/
+@import '../../common/style/common.wxss';
+page{
+  height: 100%;
+}
+
+
+progress{
+  width: 700rpx;
+}
+
+input{
+  border: 2rpx solid #B6B6B6;
+  background-color: #fff;
+}

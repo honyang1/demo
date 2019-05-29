@@ -1,0 +1,8 @@
+<!--pages/movie/movie.wxml-->
+<view>
+  movie頁面
+</view>
+
+<navigator url='/pages/about/about'>about</navigator>
+
+<button bind:tap="onChache">缓存数据</button>

@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+   <button bind:tap="getData">获取数据</button>
+</view>

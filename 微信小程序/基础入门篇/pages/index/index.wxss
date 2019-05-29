@@ -1,0 +1,29 @@
+@import "../../common/style/common.wxss";
+.pressBtn{
+  padding-top: 50rpx;
+  background: #26b;
+  width:375rpx;
+}
+
+page{
+  height: 100%;
+}
+
+progress{
+  width: 700rpx;
+}
+
+input{
+  border: 2rpx solid #b6b6b6;
+  background-color: #fff;
+}
+/* rpx 规定屏幕宽为750rpx 不管你屏幕多大 都是750rpx */
+/* 
+  支持的选择器
+  .Class
+  #id
+  element
+  element,element
+  :after
+  :before
+ */

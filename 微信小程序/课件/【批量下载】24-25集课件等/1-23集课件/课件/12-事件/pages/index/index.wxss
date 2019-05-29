@@ -1,0 +1,5 @@
+/**index.wxss**/
+.pressBtn{
+  padding-top: 50rpx;
+  background: #26B1D0;
+}

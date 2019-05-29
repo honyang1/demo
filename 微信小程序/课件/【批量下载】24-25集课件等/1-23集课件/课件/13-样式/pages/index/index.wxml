@@ -1,0 +1,26 @@
+<!--index.wxml-->
+
+<import src="template.wxml"/>
+
+<view bind:tap="onContainerTap" class="container">
+  <!-- <view>{{name}}</view>
+  <view>{{people.n1}}</view>
+  <view>{{people.n2}}</view>
+  <view>n1+n2: {{people.n2 + people.n1}}</view>
+  <view>n1>n2: {{people.n2 < people.n1}}</view> -->
+
+  <!-- <template is="renderList" data="{{names: names}}"></template>
+
+  <include src="header.wxml"/>
+
+  <template is="ofCondition" data="{{name, score}}"></template>
+  <include src="header.wxml"/>
+
+  <template is="stringName" data="{{name: 'Matt'}}"></template>
+  <include src="header.wxml"/> -->
+
+  <view bind:tap="onTap" class="pressBtn" id="view" data-name="容器">
+    <text style="font-size: 20pt;color:{{color}};" id="text" data-name="文字"> 点按我可以打印信息</text>
+  </view>
+
+</view>

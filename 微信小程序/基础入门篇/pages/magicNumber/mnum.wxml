@@ -1,0 +1,6 @@
+  <!-- bind: 事件会进行冒泡， catch： 阻止事件冒泡 -->
+  <view>{{nowIn}} is here!</view>
+  <view class='pressBtn' data-name="容器" id="view">
+    <view>{{magicNumber}}</view>
+    <text id="text" data-name="文字" catch:tap="onTab" >点击我可以打印</text>
+  </view>

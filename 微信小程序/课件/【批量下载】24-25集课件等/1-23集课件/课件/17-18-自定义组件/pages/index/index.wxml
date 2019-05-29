@@ -1,0 +1,39 @@
+<!--index.wxml-->
+
+<import src="template.wxml"/>
+
+<wxs src="tool.wxs" module="tool"></wxs>
+
+<view bind:tap="onContainerTap" class="container">
+  <!-- <view>{{name}}</view>
+  <view>{{people.n1}}</view>
+  <view>{{people.n2}}</view>
+  <view>n1+n2: {{people.n2 + people.n1}}</view>
+  <view>n1>n2: {{people.n2 < people.n1}}</view> -->
+
+  <!-- <template is="renderList" data="{{names: names}}"></template>
+
+  <include src="header.wxml"/>
+
+  <template is="ofCondition" data="{{name, score}}"></template>
+  <include src="header.wxml"/>
+
+  <template is="stringName" data="{{name: 'Matt'}}"></template>
+  <include src="header.wxml"/> -->
+
+  <magic-number now-in="Index" bind:getMagicNumber="onGetMagicMumber"></magic-number>
+
+  <view
+    class="num"
+    id="num"
+    sytle="color: #3E99C6"
+    data-name="num"
+    bind:tap="onNumTap"
+  >{{num}}</view>
+
+
+  <!-- <view
+    wx:for="{{tool(names)}}"
+  >{{item}}</view> -->
+
+</view>
