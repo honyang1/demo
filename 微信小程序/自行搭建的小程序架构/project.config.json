@@ -1,33 +1,21 @@
 {
-	"client": "client/",
-	"svr": "server/",
-	"miniprogramRoot": "client/",
-	"qcloudRoot": "server/",
 	"description": "项目配置文件",
 	"packOptions": {
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"coverView": true,
 		"autoAudits": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		}
+		"coverView": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.0",
 	"appid": "wx52bea58eb682e00a",
-	"projectname": "project",
+	"projectname": "%E8%87%AA%E8%A1%8C%E6%90%AD%E5%BB%BA%E7%9A%84%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
