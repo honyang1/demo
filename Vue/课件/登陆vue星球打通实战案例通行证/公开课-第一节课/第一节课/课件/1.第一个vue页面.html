@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+
+    /*
+    * 引入vue的源文件以后，可以使用一个构造函数 Vue
+    *
+    * 通过 new Vue() 来创建一个对象，后期就是通过该对象来对应我们的Vue应用进行开发
+    * 该方法接收一个参数，这个参数是一个对象，这个对象会接收一些设置配置，通过配置来完成我们的开发
+    *
+    * el : 给vue指定一个容器
+    * template : 内容（模板）
+    * */
+
+    new Vue({
+        el: document.querySelector('#app'),
+        template: '<h1>Hello Vue</h1>'
+    });
+
+
+</script>
+
+</body>
+</html>

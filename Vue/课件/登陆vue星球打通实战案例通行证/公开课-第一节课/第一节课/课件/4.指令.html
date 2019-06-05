@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h1>Hello Vue</h1>
+</div>
+
+<script>
+
+    /*
+    * 指令
+    *   1. 指令是以标签属性的形式的存在
+    *   2. 不是所有属性都是指令，指令是以 v- 为前缀的
+    *   3. <div v-指令名称="指令的值"></div>
+    *   4. 指令的值会被vue处理，然后根据指令的值的结果去影响指令所在的标签内容
+    *   5. 不同的指令有不同的作用
+    * */
+
+    new Vue({
+        el: '#app'
+    });
+
+
+</script>
+
+</body>
+</html>

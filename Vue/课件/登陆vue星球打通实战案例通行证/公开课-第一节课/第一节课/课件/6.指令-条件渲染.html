@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <!--<div v-show="false">{{title}}</div>-->
+
+    <!--<div v-if="true">{{title}}</div>-->
+
+    <div v-if="isLogin">欢迎</div>
+    <div v-else>请登录</div>
+
+</div>
+
+<script>
+
+    /*
+    * v-show和v-if都可以让一个内容动态的显示或隐藏
+    *
+    * v-show是设置了该元素的css样式display为none
+    * 而v-if是创建或删除该元素
+    * */
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            title: '欢迎',
+            isLogin: false
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

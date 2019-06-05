@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <ul>
+        <li v-for="user of users">{{user}}</li>
+    </ul>
+
+    <hr>
+
+    <ul>
+        <li v-for="user,index of users">{{index}} - {{user}}</li>
+    </ul>
+
+    <hr>
+
+    <ul>
+        <li v-for="v of 10">{{v}}</li>
+    </ul>
+
+</div>
+
+<script>
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            users: ['motao','tongbin']
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <!--<div id="{{id}}"></div>-->
+
+    <div v-bind:id="id"></div>
+
+</div>
+
+<script>
+
+    /*
+    * 在属性中直接使用，那么属性的值是不会被vue解析处理
+    *
+    * 如果需要把vue中的数据和属性进行绑定，那么需要使用v-bind指令
+    *
+    *   <div v-bind:标签的属性="表达式"></div>
+    *   我们把指令冒号后的内容，称为指令的属性
+    * */
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            id: 'miaov'
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

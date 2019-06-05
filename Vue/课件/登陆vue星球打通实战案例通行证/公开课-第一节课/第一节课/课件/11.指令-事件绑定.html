@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <!--<button v-on:click="toggle">按钮</button>-->
+    <!--<button @click="toggle">按钮</button>-->
+    <button @click="toggle($event)">按钮</button>
+    <div class="box" v-show="isShow"></div>
+
+</div>
+
+<script>
+
+    /*
+    * v-on
+    *   把函数绑定到元素的事件属性上
+    *   v-on参数：具体的事件类型
+    *   值：表达式
+    *
+    *   注意：vue中产生了一个沙盒（封闭）环境，不能直接访问vue外部的数据，vue为我们指定了一个放置各种不同数据位置
+    *   data
+    *
+    *   methods：他的值是一个对象，该对象下存储方法中的this指向当前的vue实例对象
+    *
+    *   事件对象：如果methods中的一个函数与事件进行了绑定，那么默认情况下事件函数的第一个参数就是事件对象
+    *
+    *   如果函数绑定的时候，没有括号，那么第一个参数就是事件对象，如果带了括号就需要手动传入事件对象，这个事件对象名称必须是：$event
+    *
+    *   什么时候需要使用括号，当我们调用该函数，需要传入参数的时候
+    * */
+
+//    function toggle() {
+//        console.log('toggle')
+//    }
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            // 数据驱动视图
+            isShow: false
+        },
+        methods: {
+            toggle(e) {
+                console.log('toggle');
+                console.log(this);
+                console.log(this.isShow);
+
+                this.isShow = !this.isShow;
+
+                console.log(e);
+            },
+
+//            toggle: function() {
+//
+//            }
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

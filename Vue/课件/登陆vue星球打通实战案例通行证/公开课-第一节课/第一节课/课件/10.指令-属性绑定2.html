@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <input type="text" v-bind:value="v" />
+    <input type="text" v-model="v" />
+
+</div>
+
+<script>
+
+    /*
+    * v-bind: 把数据绑定到指定的属性上，可以由我们手动去指定绑定的属性是谁
+    *
+    * v-model: 把数据绑定到指定的属性，是当前的所在标签决定的
+    *
+    * 数据流：
+    *   视图 <-> 数据
+    *
+    *   1. 单向数据流
+    *       数据 -> 视图
+    *       当数据发生变化的时候，视图会重新渲染
+    *       v-bind,v-text,v-html,{{}}
+    *   2. 双向数据流
+    *       视图 <-> 数据
+    *       当数据发生变化的时候，视图会重新渲染，当视图发生变化的时候，对应数据也会发生改变
+    * */
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            v: 'miaov'
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

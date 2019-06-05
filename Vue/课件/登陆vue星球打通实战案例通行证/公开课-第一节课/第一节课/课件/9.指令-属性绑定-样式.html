@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <!--<div style="width: 100px; height: 100px; background: red"></div>-->
+
+    <!--<div v-bind:style="'width: 100px; height: 100px; background: red'"></div>-->
+
+    <!--<div v-bind:style="'width: '+width+'; height: '+height+'; background: '+background"></div>-->
+
+    <div v-bind:style="{width, height, background}"></div>
+
+    <div v-bind:style="s1"></div>
+
+    <div v-bind:class="box"></div>
+
+    <div v-bind:class="['box1', 'box2', 'box3']"></div>
+
+    <div v-bind:class="{box1: true}"></div>
+
+    <div :class="{box1: true}"></div>
+
+</div>
+
+<script>
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            width: '100px',
+            height: '100px',
+            background: 'green',
+            s1: {
+                width: '200px',
+                height: '200px',
+                background: 'yellow'
+            },
+            box: 'box1'
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

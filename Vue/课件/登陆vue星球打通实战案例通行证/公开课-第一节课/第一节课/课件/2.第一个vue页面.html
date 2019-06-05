@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h1>{{message}}</h1>
+</div>
+
+<script>
+
+    /*
+    * 选项：data
+    *   用来存放vue中需要使用到的数据，他的值是一个对象
+    *
+    * 模板语法：
+    *   {{表达式}}
+    *   表达式：由运算数或运算符组成的能够计算初结果的公式，变量、函数、数学
+    * */
+
+    // var message = 'Hello Vue';
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue'
+        }
+//        template: '<h1>我是template</h1>'
+    });
+
+    console.log(app);
+    console.log(app.message);
+
+
+</script>
+
+</body>
+</html>
