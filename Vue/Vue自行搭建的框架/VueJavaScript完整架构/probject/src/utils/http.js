@@ -1,18 +1,14 @@
-import { Loading, Notification } from 'element-ui';
-import App from './utils';
-// import store from '../store/store'
-
-var config = require('./config')
-    // 引用axios
-var axios = require('axios')
-var store = require('../store/store')
+import { Notification } from 'element-ui';
+import { com } from './utils';
+import axios from 'axios';
+import store from '@/store/index';
 
 // 自定义判断元素类型JS
-function toType(obj) {
+const toType = (obj) => {
     return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 // 参数过滤函数
-function filterNull(o) {
+const filterNull = (o) => {
     for (var key in o) {
         if (o[key] === null) {
             delete o[key]
@@ -32,80 +28,59 @@ const queue = [];
 var loadinginstace;
 const header = { 'content-type': 'application/json; charset=utf-8' }
 
-function apiAxios(config, success) {
+async function apiAxios(config) {
     if (config.params) {
         config.params = filterNull(config.params)
     }
     config.headers = App.com.isNull(config.headers) ? header : config.headers;
-    config.headers['Authorization'] = store.default.state.token; //App.session.get('Token');
-    instance({
-            method: App.com.isNull(config.method) ? 'GET' : config.method,
-            url: config.url,
-            data: config.method === 'POST' || config.method === 'PUT' ? config.params : null,
-            params: App.com.isNull(config.method) || config.method === 'GET' || config.method === 'DELETE' ? config.params : null,
-            baseURL: location.origin,
-            withCredentials: false,
-            headers: App.com.isNull(config.headers) ? header : config.headers,
-            responseType: App.com.isNull(config.responseType) ? 'json' : config.responseType,
-            loadingType: App.com.isNull(config.loadingType) ? true : config.loadingType
-        })
-        .then(function(res) {
-            success(res);
-        })
-        .catch(function(err) {
-            let res = err.response
-            if (res) {
-                window.alert('api error, HTTP CODE: ' + res.status)
-            } else {
-                // 错误信息显示
-                console.log("错误信息：" + err);
-            }
-
-        })
+    // config.headers['Authorization'] = store.default.state.token;
+    const instance = axios.create();
+    await interceptors(instance);
+    return instance({
+        method: com.isNull(config.method) ? 'GET' : config.method,
+        url: config.url,
+        data: config.method === 'POST' || config.method === 'PUT' ? config.params : null,
+        params: com.isNull(config.method) || config.method === 'GET' || config.method === 'DELETE' ? config.params : null,
+        baseURL: location.origin,
+        withCredentials: false,
+        headers: com.isNull(config.headers) ? header : config.headers,
+        responseType: com.isNull(config.responseType) ? 'json' : config.responseType,
+        loadingType: com.isNull(config.loadingType) ? true : config.loadingType
+    })
 }
 
+const interceptors = (instance) => {
+    instance.interceptors.request.use(res => { // 请求拦截
+        if (!Object.keys(queue).length && res.loadingType)
+            store.commit('showLoading');
+        if (res.url && res.loadingType)
+            queue[res.url] = true
+        return res
+    }, error => {
+        return ErrorRequest(error);
+    })
+    instance.interceptors.response.use(res => { // 响应拦截
+        if (res.config.url)
+            destroy(res.config.url)
+        const { status } = res
+        if (status === 200) { return res } // 请求成功
 
-function destroy(url) {
+        ErrorRequest(res);
+        return null;// 失败回调 返回null
+    }, error => {
+        if (error.config.url)
+            destroy(error.config.url)
+        return ErrorRequest(error)
+    })
+
+}
+
+const destroy = (url) => {
     delete queue[url]
     if (!Object.keys(queue).length) {
-        // hide loading
-        if (!App.com.isNull(loadinginstace))
-            loadinginstace.close();
+        store.commit('hideLoading');
     }
 }
-const instance = axios.create()
-instance.interceptors.request.use(res => { // 请求拦截
-    if (!Object.keys(queue).length && res.loadingType) {
-        // show loading
-        loadinginstace = Loading.service({
-            lock: true,
-            text: 'Loading',
-            spinner: 'el-icon-loading',
-            background: 'rgba(0, 0, 0, 0.7)'
-        })
-    }
-    if (res.url && res.loadingType) {
-        queue[res.url] = true
-    }
-    return res
-}, error => {
-    // eslint-disable-next-line no-console
-    return ErrorRequest(error);
-})
-instance.interceptors.response.use(res => { // 响应拦截
-    if (res.config.url) {
-        destroy(res.config.url)
-    }
-    const { data, status } = res
-    if (status === 200) { return data } // 请求成功
-    return ErrorRequest(res) // 失败回调 返回undefined
-}, error => {
-    if (error.config.url) {
-        destroy(error.config.url)
-    }
-    // eslint-disable-next-line no-console
-    return ErrorRequest(error)
-})
 
 const options = {
     title: '错误',
@@ -116,18 +91,21 @@ const ErrorRequest = (error => {
     if (App.com.isNull(error.response)) {
         options.message = error.message;
     } else
-    if (error.response.status === 401) {
-        window.top.location.href = config.LoginUrl;
-        return
-    } else if (error.response.status === 500) {
-        options.message = '服务器内部错误';
-    } else {
-        options.message = '错误编码：' + error.response.status + '    错误信息：' + error.response.statusText;
-    }
+        if (error.response.status === 401) {
+            window.top.location.href = config.LoginUrl;
+            return
+        } else if (error.response.status === 500) {
+            options.message = '服务器内部错误';
+        } else {
+            options.message = '错误编码：' + error.response.status + '    错误信息：' + error.response.statusText;
+        }
     Notification.error(options)
 });
+
+
 export default {
-    Ajax: function(config, success) {
+    Ajax: function (config, success) {
         return apiAxios(config, success)
     }
 };
+
