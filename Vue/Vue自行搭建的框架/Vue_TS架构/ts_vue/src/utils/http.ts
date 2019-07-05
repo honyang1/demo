@@ -1,5 +1,5 @@
 import { Notification } from 'element-ui';
-import { com } from './common';
+import { com, session } from './common';
 import axios, { AxiosRequestConfig } from 'axios';
 import store from '@/store/index';
 
@@ -22,37 +22,36 @@ function filterNull(o: any): any { // 参数过滤函数 为null 的值
 class http {
     public queue: any;
     private header: any = { 'content-type': 'application/json; charset=utf-8' };
-    constructor() {
-        this.queue = {};
+    public constructor() {
+        this.queue = {}
     }
     async  request(config: AxiosRequestConfig, loadingType?: boolean) {
         if (config.params) {
             config.params = filterNull(config.params)
         }
-        let options: any = {
-            method: com.isNull(config.method) ? 'GET' : config.method,
-            url: config.url,
-            data: config.method === 'POST' || config.method === 'PUT' ? config.params : null,
-            params: com.isNull(config.method) || config.method === 'GET' || config.method === 'DELETE' ? config.params : null,
-            baseURL: location.origin,
-            withCredentials: false,
-            headers: com.isNull(config.headers) ? this.header : config.headers,
-            responseType: com.isNull(config.responseType) ? 'json' : config.responseType,
-            loadingType: com.isNull(loadingType) ? false : loadingType,
-            ...config
-        }
+        let headers = com.isNull(config.headers) ? this.header : config.headers;
+        headers.Authorization = 'Bearer ' + session.get('token');
+        let options: AxiosRequestConfig | any = config;
+        options.method = com.isNull(config.method) ? 'GET' : config.method;
+        options.data = config.method === 'POST' || config.method === 'PUT' ? config.params : null;
+        options.params = com.isNull(config.method) || config.method === 'GET' || config.method === 'DELETE' ? config.params : null;
+        options.baseURL = location.origin;
+        options.withCredentials = false;
+        options.headers = headers;
+        options.responseType = com.isNull(config.responseType) ? 'json' : config.responseType;
+        let url = com.isNull(loadingType) || !loadingType ? null : options.url;
         const instance = axios.create();
-        await this.interceptors(instance, options);
+        await this.interceptors(instance, url);
         return instance(options)
     }
 
-    private interceptors(instance: any, url?: string) {
+    private interceptors(instance: any, url: string | null) {
         instance.interceptors.request.use((res: any) => {
-            if (!Object.keys(this.queue).length && res.loadingType) {
+            if (!Object.keys(this.queue).length && url !== null) {
                 store.commit('showLoading');
             }
-            if (res.url && res.loadingType) {
-                this.queue[res.url] = true
+            if (url !== null) {
+                this.queue[url] = true
             }
             return res
         }, (error: any) => {
@@ -60,15 +59,15 @@ class http {
         });
 
         instance.interceptors.response.use((res: any) => { // 响应拦截
-            if (res.config.url) {
-                this.destroy(res.config.url)
+            if (url !== null) {
+                this.destroy(url)
             }
             const { data, status } = res
             if (status === 200) { return data } // 请求成功
             return this.errorRequest(res) // 失败回调 返回undefined
         }, (error: any) => {
-            if (error.config.url) {
-                this.destroy(error.config.url)
+            if (url) {
+                this.destroy(url)
             }
             return this.errorRequest(error)
         })
@@ -77,7 +76,7 @@ class http {
     private destroy(url: string): void {
         delete this.queue[url]
         if (!Object.keys(this.queue).length) {
-            store.commit('hideLoading ');
+            store.commit('hideLoading');
         }
     }
     private errorRequest(error: any): void {

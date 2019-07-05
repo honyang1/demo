@@ -1,0 +1,125 @@
+.main-wrap {
+  height: calc(100vh - 60px);
+  position: relative;
+}
+
+.el-header {
+  padding: 0;
+  background: rgba(26, 85, 147, 1);
+  img {
+    width: 80px;
+    height: 100%;
+    float: left;
+  }
+  .title {
+    font-size: 20px;
+    font-family: Helvetica;
+    color: rgba(255, 255, 255, 1);
+    line-height: 60px;
+    letter-spacing: 3px;
+    float: left;
+    padding: 0 25px;
+  }
+  .right {
+    float: right;
+    width: 200px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 15px;
+  }
+}
+.bg {
+  width: 25%;
+  background-size: 20px !important;
+}
+
+.bg1 {
+  background: url("../../../assets/Image/main/top1@2x.png") no-repeat center;
+}
+
+.bg2 {
+  background: url("../../../assets/Image/main/top2@2x.png") no-repeat center;
+}
+
+.bg3 {
+  background: url("../../../assets/Image/main/top3@2x.png") no-repeat center;
+}
+
+.bgimg {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    border-radius: 30px;
+    left: 10px;
+    width: 32px;
+    height: 32px;
+    float: none;
+  }
+}
+
+.el-aside {
+  width: 80px !important;
+  background: rgba(2, 74, 150, 1);
+  box-shadow: 0px 2px 5px 0px rgba(19, 91, 158, 0.3);
+  .li {
+    height: 80px;
+    width: 100%;
+    cursor: pointer;
+    color: #daecff;
+  }
+  .li.active,
+  .li:hover {
+    background: rgba(0, 52, 117, 1);
+    color: #03e4dd;
+  }
+  .icon {
+    height: 60%;
+    width: 100%;
+    background-size: 40% !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    img {
+      width: 35px;
+    }
+    .iconfont {
+      font-size: 26px;
+      font-weight: 600;
+    }
+  }
+  .txt {
+    height: 40%;
+    text-align: center;
+    width: 100%;
+    font-size: 12px;
+    font-family: PingFangSC-Semibold;
+    font-weight: 600;
+    line-height: 25px;
+  }
+
+  .liTwo {
+    position: absolute;
+    left: 80px;
+    width: 100px;
+    height: 100%;
+    top: 0;
+    background: rgba(23, 158, 232, 1);
+    box-shadow: 0px 2px 5px 0px rgba(19, 91, 158, 0.3);
+    .li {
+      height: 70px;
+    }
+    .li.active,
+    .li:hover {
+      background: #fff;
+      color: rgba(0, 52, 117, 1);
+    }
+  }
+}
+
+.el-main{
+  padding: 0;
+  display: flex;
+}

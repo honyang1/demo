@@ -1,0 +1,18 @@
+.map-wrap {
+  width: 100%;
+ 
+  .mymap {
+    width: 100%;
+    height: calc(100% - 70px);
+    margin-top: 45px;
+  }
+  
+  .el-dialog__headerbtn {
+    top: -10px;
+    right: -10px;
+    background: #fff;
+    padding: 5px;
+    border-radius: 15px;
+  }
+  
+}

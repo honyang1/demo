@@ -23,12 +23,12 @@
     "trailing-comma": false,
     "eofline": false,
     "prefer-conditional-expression": false,
-    "curly": true,
+    "curly": false,
     "forin": false,
     "import-blacklist": true,
     "no-arg": true,
     "no-bitwise": true,
-    "no-console": false,
+    "no-console": true,
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
@@ -70,6 +70,8 @@
     "prefer-const": false,
     "max-line-length": false,
     "no-unused-expression": false,
-    "class-name": false
+    "class-name": false,
+    "no-unused-vars": false,
+    "disable-next-line": "align"
   }
 }

@@ -18,7 +18,6 @@ if (!dirName) {
  */
 const VueTep = `<template>
   <div class="${dirName}-wrap">
-    {{data.pageName}}
   </div>
 </template>
 
@@ -30,16 +29,17 @@ const VueTep = `<template>
 
 // ts 模版
 const tsTep = `import { Component, Vue } from "vue-property-decorator"
-import { ${capPirName}Data } from './${dirName}.interface'
-import { ${dirName}Api } from '@/config/api';
+import * as Type from "@/types/rescue/receptionCenter.interface"
+import { Action } from "vuex-class"
+import { commonApi } from '@/config/api';
 // import {  } from "@/components" // 组件
 
 @Component({})
 export default class About extends Vue {
-  // data
-  data: ${capPirName}Data = {
-    pageName: '${dirName}'
-  }
+  //@State appCode: any
+  // data: ${capPirName}Data = {
+  //   pageName: '${dirName}'
+  // }
 
   created() {
     //
@@ -52,6 +52,8 @@ export default class About extends Vue {
   this.$route.meta.isBack = false //请求完后进行初始化
   this.isFirstEnter = false;//请求完后进行初始化
 */
+@Action login: any
+/* @State Login: any  Login ===  （modules: { Login }）访问子集的时候用继承的名字，直接拿出子集的所有集合 */
   activated() {
     //
   }
@@ -76,39 +78,91 @@ const scssTep = `
 `;
 
 // interface 模版
-const interfaceTep = `// ${dirName}.Data 参数类型
+const interfaceTep = ` 
+/* ${dirName}.Data 参数类型 */
 export interface ${capPirName}Data {
   pageName: string
 }
-// VUEX ${dirName}.State 参数类型
+/* VUEX ${dirName}.State 参数类型 */
 export interface ${capPirName}State {
-  author?: string
+  [key: string]: any
 }
-// GET_DATA_ASYN 接口参数类型
-// export interface DataOptions {}
+
+/* 接口请求参数类型 -  */
+// export interface ${capPirName}Req {
+//   id?: string,                    /* id查询 */
+// }
+
+/* 接口接收参数类型 -  */
+// export interface ${capPirName}Ret {
+//   id?: string,          /* 主键ID */
+// }
 `;
 
 
 // api 接口模版
-const apiTep = `import basse from './base';
-import $ from '@/utils/http';
+// const apiTep = `import base from '@/config/base';
+// import $ from '@/utils/http';
+// /* 登陆 */
+// // export const login = (data: any) => {
+// //     return $.Ajax({ url: base.commonBase + '/api/Account/Login', method: 'POST', params: { ...data } }, true);
+// // }
+// `;
 
-/*  */
-export const getData = (data: any) => {
-    return $.Ajax({ url: basse.sosBase + '', method: 'GET', ...data });
+const storeTep = `
+import {${capPirName}State, ${capPirName}Req } from '@/types/${dirName}.interface'
+import { GetterTree, MutationTree, ActionTree } from 'vuex'
+// import { ${capPirName}Api } from '@/config/api';
+
+const state: ${capPirName}State = {
+  autor?: string
 }
 
+// 强制使用getter获取state
+const getters: GetterTree<${capPirName}State, any> = {
+    
+}
+
+// 更改state
+const mutations: MutationTree< ${capPirName}State> = {
+    // 更新state都用该方法
+    UPDATE_STATE(state:  ${capPirName}State, data:  ${capPirName}State) {
+        for (let key in data) {
+            if (!data.hasOwnProperty(key)) { return }
+            state[key] = data[key]
+        }
+    }
+}
+
+const actions: ActionTree< ${capPirName}State, any> = {
+    /* 更改state */
+    updateState({ commit, state:  ${capPirName}State }, data:  ${capPirName}State) {
+        commit('UPDATE_STATE', data)
+    },
+}
+
+export default {
+    state,
+    getters,
+    mutations,
+    actions
+}
 `;
 
-fs.mkdirSync(`${basePath}/views/${dirName}`); // mkdir
+fs.mkdirSync(`${basePath}/views/rescue/${dirName}`); // mkdir
 
-process.chdir(`${basePath}/views/${dirName}`); // cd views
+process.chdir(`${basePath}/views/rescue/${dirName}`); // cd views
 fs.writeFileSync(`${dirName}.vue`, VueTep); // vue
 fs.writeFileSync(`${dirName}.ts`, tsTep); // ts
 fs.writeFileSync(`${dirName}.scss`, scssTep);
+
+process.chdir(`${basePath}/types/rescue`);
 fs.writeFileSync(`${dirName}.interface.ts`, interfaceTep); // interface
 
-fs.mkdirSync(`${basePath}/config/${dirName}Api`);
-process.chdir(`${basePath}/config/${dirName}Api`); // cd api
-fs.writeFileSync(`${dirName}.ts`, apiTep); // api
+// process.chdir(`${basePath}/config/api`); // cd api
+// fs.writeFileSync(`${dirName}.ts`, apiTep); // api
+
+process.chdir(`${basePath}/store/rescue`);
+fs.writeFileSync(`${dirName}.ts`, storeTep); // api
+// fs.mkdirSync(`${basePath}/types/${dirName}`); // mkdir
 process.exit(0);

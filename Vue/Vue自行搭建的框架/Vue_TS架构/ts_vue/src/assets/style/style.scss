@@ -1,0 +1,68 @@
+main,
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.amap-logo,
+.amap-copyright {
+  display: none !important;
+}
+
+.el-input__inner {
+  height: 35px !important;
+  line-height: 35px !important;
+}
+.el-textarea__inner {
+  resize: none !important;
+}
+
+.el-scrollbar__wrap {
+  overflow-x: hidden !important;
+}
+.el-select-dropdown__wrap.el-scrollbar__wrap {
+  overflow-x: scroll !important;
+}
+
+.map-wrap {
+  .el-dialog {
+    margin-top: 5%;
+    height: 75%;
+    width: 100%;
+  }
+  .el-dialog__header {
+    display: none;
+  }
+  .el-dialog__body {
+    padding: 15px 10px;
+  }
+  .el-input__inner {
+    height: 28px !important;
+    line-height: 28px !important;
+  }
+  .el-button {
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 7px 20px;
+  }
+  .el-dialog__body {
+    height: 100%;
+  }
+  .el-form-item {
+    margin-bottom: 0;
+  }
+}
+.amap-sug-result {
+  z-index: 9999;
+}
+.amap-icon img {
+  width: 25px;
+  height: 34px;
+}
+
+
+.event .el-scrollbar__view {
+  display: inline;
+}

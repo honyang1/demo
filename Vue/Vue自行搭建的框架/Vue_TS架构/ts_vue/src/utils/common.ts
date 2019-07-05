@@ -1,10 +1,9 @@
-import { DateType } from 'element-ui/types/calendar';
-
 const com: any = {
     /* 是否为空 */
     isNull(str: any): boolean {
         if (str === null) { return true; }
         if (str === undefined) { return true; }
+        if (str === 'undefined') { return true; }
         if (str === 'null') { return true; }
         if (str.length === 0) { return true; }
         if (/^\s*$/i.test(str)) { return true; }
@@ -113,19 +112,22 @@ const com: any = {
         return iDays;
     },
     /* data1 开始时间   data2 结束时间  newDate() */
-    timeDiff(date1: any, date2: any): any { //
+    timeDiff(date1: Date, date2: Date): object { //
         let date3 = date2.getTime() - date1.getTime() // 时间差的毫秒数      
         // 计算出相差天数
-        let iDays = Math.floor(date3 / (24 * 3600 * 1000))
+        let day = Math.floor(date3 / (24 * 3600 * 1000))
         let leave1 = date3 % (24 * 3600 * 1000) // 计算天数后剩余的毫秒数
-        let iHours = Math.floor(leave1 / (3600 * 1000))
+        let hours = Math.floor(leave1 / (3600 * 1000))
         // 计算相差分钟数
         let leave2 = leave1 % (3600 * 1000) // 计算小时数后剩余的毫秒数
-        let iMinutes = Math.floor(leave2 / (60 * 1000))
+        let minutes = Math.floor(leave2 / (60 * 1000))
         // 计算相差秒数
         let leave3 = leave2 % (60 * 1000) // 计算分钟数后剩余的毫秒数
-        let iSeconds = Math.round(leave3 / 1000)
-        return { day: iDays, hours: iHours, minutes: iMinutes, seconds: iSeconds };
+        let seconds = Math.round(leave3 / 1000)
+        return {
+            day: day > 0 ? day + '天' : '', hours: hours > 0 ? hours + '小时' : '',
+            minutes: minutes > 0 ? minutes + '分钟' : '', seconds: seconds > 0 ? seconds + '秒' : '',
+        };
     },
     /* 月份追加0 */
     toMonthZero(month: number): any {
@@ -192,6 +194,7 @@ const com: any = {
 };
 
 const Enumerable = require('linqjs');
+
 const json: any = {
     /* 查询 */
     toWhere(Json: any, where: any) {
@@ -239,7 +242,9 @@ const session: any = {
     /* 获取session */
     get(key: string) {
         let json: any = sessionStorage.getItem(key);
-        return JSON.parse(json);
+        if (!com.isNull(json))
+            return JSON.parse(json);
+        return '';
     },
     /* 设置session */
     set(key: string, value: any) {
@@ -254,15 +259,6 @@ const session: any = {
         return document.cookie.split('=')[1];
     }
 }
-
-export {
-    com,
-    json,
-    session
-}
-
-
-
 
 const FormatDataTime = (time: Date, format: any): string => {
     if (!format) { format = "yyyy-MM-dd HH:mm:ss"; }
@@ -288,29 +284,11 @@ const FormatDataTime = (time: Date, format: any): string => {
     return format;
 }
 
-// Date.prototype.FormatDataTime((format: any) => {
-//     if (!format) { format = "yyyy-MM-dd HH:mm:ss"; }
-//     let time = new Date();
-//     let o: any = {
-//         "M+": time.getMonth() + 1, // month
-//         "d+": time.getDate(), // day
-//         "H+": time.getHours(), // hour
-//         "m+": time.getMinutes(), // minute
-//         "s+": time.getSeconds(), // second
-//         "q+": Math.floor((time.getMonth() + 3) / 3), // quarter
-//         "S": time.getMilliseconds()
-//     }
-
-//     if (/(y+)/.test(format)) {
-//         format = format.replace(RegExp.$1, (time.getFullYear() + "")
-//             .substr(4 - RegExp.$1.length));
-//     }
-//     for (let k in o) {
-//         if (new RegExp("(" + k + ")").test(format)) {
-//             format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
-//         }
-//     }
-//     return format;
-// });
 
 
+
+export {
+    com,
+    json,
+    session
+}
